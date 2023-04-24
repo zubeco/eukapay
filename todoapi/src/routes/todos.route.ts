@@ -4,6 +4,7 @@ import {
   createTodo,
   updateTodo,
   deleteTodo,
+  getTodoById,
 } from "../controllers/todos.controller";
 
 const router = express.Router();
@@ -23,6 +24,16 @@ router.post("/", async (req, res) => {
     const { content, dueDate } = req.body;
     const newTodo = await createTodo(content, dueDate);
     res.json(newTodo);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send(err.message);
+  }
+});
+
+router.get("/:id", async (req, res) => {
+  try {
+    const todo = await getTodoById(Number(req.params.id));
+    res.json(todo);
   } catch (err) {
     console.error(err);
     res.status(500).send(err.message);

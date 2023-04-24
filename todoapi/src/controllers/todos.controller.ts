@@ -11,6 +11,15 @@ export const getAllTodos = async (): Promise<TodoItem[]> => {
   return todoList;
 };
 
+export const getTodoById = async (id: number): Promise<TodoItem> => {
+  const todoList = await listTodos();
+  const todo = todoList.find((item) => item.id === id);
+  if (!todo) {
+    throw new Error(`No todo item found with id ${id}`);
+  }
+  return todo;
+};
+
 export const createTodo = async (
   content: string,
   dueDate: string
@@ -29,7 +38,7 @@ export const createTodo = async (
 
 export const updateTodo = async (
   id: number,
-  content?: string | { content: string, dueDate?: string, status?: boolean }
+  content?: string | { content: string; dueDate?: string; status?: boolean }
 ): Promise<TodoItem> => {
   const todoList = await listTodos();
   const index = todoList.findIndex((item) => item.id === id);
@@ -37,11 +46,18 @@ export const updateTodo = async (
     throw new Error(`No todo item found with id ${id}`);
   }
 
-  const updatedContent = typeof content === "object" ? content.content : content;
+  const updatedContent =
+    typeof content === "object" ? content.content : content;
 
-  const updatedDueDate = typeof content === "object" && content.dueDate ? content.dueDate : todoList[index].dueDate;
+  const updatedDueDate =
+    typeof content === "object" && content.dueDate
+      ? content.dueDate
+      : todoList[index].dueDate;
 
-  const updatedStatus = typeof content === "object" && typeof content.status === "boolean" ? content.status : todoList[index].status;
+  const updatedStatus =
+    typeof content === "object" && typeof content.status === "boolean"
+      ? content.status
+      : todoList[index].status;
 
   const updatedTodo = {
     id,
@@ -56,7 +72,6 @@ export const updateTodo = async (
 
   return updatedTodo;
 };
-
 
 export const deleteTodo = async (
   id: number
