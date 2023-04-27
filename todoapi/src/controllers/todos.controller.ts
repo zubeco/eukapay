@@ -22,7 +22,7 @@ export const getTodoById = async (id: number): Promise<TodoItem> => {
 
 export const createTodo = async (
   content: string,
-  dueDate: string
+  dueDate: Date
 ): Promise<TodoItem> => {
   const todoList = await listTodos();
   const newTodo: TodoItem = {
@@ -38,7 +38,7 @@ export const createTodo = async (
 
 export const updateTodo = async (
   id: number,
-  content?: string | { content: string; dueDate?: string; status?: boolean }
+  content?: string | { content: string; dueDate?: Date; status?: boolean }
 ): Promise<TodoItem> => {
   const todoList = await listTodos();
   const index = todoList.findIndex((item) => item.id === id);
