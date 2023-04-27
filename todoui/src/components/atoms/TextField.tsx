@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { TextField, Button } from "@mui/material";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
+import { TodoContext } from "../context/TodoContext";
 
 interface TodoData {
-  dueDate: string;
+  dueDate: Date;
   content: string;
 }
 
@@ -15,16 +16,20 @@ const MyTextField = () => {
   const [textError, setTextError] = useState(false);
   const [dateError, setDateError] = useState(false);
   const [apiStatus, setApiStatus] = useState("");
+  const { toggleRefetch } = useContext(TodoContext);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (textValue && dateValue) {
-      const formattedDate = dateValue.toLocaleDateString("en-GB");
+      const formattedDate = new Date(dateValue!).toISOString().split("T")[0];
       console.log(`Submitted values: ${textValue} and ${formattedDate}`);
       setTextError(false);
       setDateError(false);
 
-      const data: TodoData = { dueDate: formattedDate, content: textValue };
+      const data: TodoData = {
+        dueDate: new Date(formattedDate),
+        content: textValue,
+      };
       axios
         .post<TodoData>("http://localhost:4545/api/todos", data)
         .then((response) => {
@@ -32,6 +37,7 @@ const MyTextField = () => {
           setTextValue("");
           setDateValue(null);
           setApiStatus("success");
+          toggleRefetch(); // <-- trigger a refetch
           setTimeout(() => {
             setApiStatus("");
           }, 5000);
@@ -49,6 +55,8 @@ const MyTextField = () => {
       setDateError(!dateValue);
     }
   };
+
+  // ...
 
   return (
     <form onSubmit={handleSubmit}>

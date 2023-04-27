@@ -1,7 +1,13 @@
 import { Typography, useTheme } from "@mui/material";
+import { useRouter } from "next/router";
 
 export default function Header() {
+  const router = useRouter();
   const theme = useTheme();
+
+  const handleClick = () => {
+    alert("You clicked the header!");
+  };
 
   return (
     <Typography
@@ -13,7 +19,9 @@ export default function Header() {
         [theme.breakpoints.up("lg")]: {
           fontSize: "32px",
         },
+        cursor: "pointer",
       }}
+      onClick={() => router.push("/")} // Add onClick prop with the handleClick function
     >
       Get Things Done!
     </Typography>
