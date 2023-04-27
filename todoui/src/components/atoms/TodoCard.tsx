@@ -53,7 +53,13 @@ export default function TodoCard() {
             justifyContent: "space-between",
           }}
         >
-          <Typography>{todo.content}</Typography>
+          <Typography
+            sx={{
+              textDecoration: todo.status === true ? "line-through" : "none",
+            }}
+          >
+            {todo.content}
+          </Typography>
           <Box
             sx={{
               display: "flex",
