@@ -17,4 +17,4 @@ Make sure you have Docker installed on your machine. If you don't have it instal
 9. Access the Todo app by opening your browser and going to http://localhost:3000.
 That's it! You should now be able to run the Express API and the Next.js app using Docker.
 
-_Note: This project contains two folders, one for the UI and the other for the API. You will need to navigate into each folder separately and run the commands mentioned above to spin up the server._
+**_Note: This project contains two folders, one for the UI and the other for the API. You will need to navigate into each folder separately and run the commands mentioned above to spin up the server._**
