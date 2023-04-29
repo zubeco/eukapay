@@ -1,5 +1,4 @@
 # EukaPay Assessment Project
-### This is a project that consists of an Express API and a Next.js app.
 
 ## Prerequisites
 Make sure you have Docker installed on your machine. If you don't have it installed, you can download and install it from the official website
