@@ -7,7 +7,7 @@ import {
   getTodoById,
 } from "./todoHandler";
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+const TodoApi = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "GET" && req.query.id) {
     await getTodoById(req, res);
   } else if (req.method === "GET") {
@@ -23,4 +23,4 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-export default handler;
+export default TodoApi;

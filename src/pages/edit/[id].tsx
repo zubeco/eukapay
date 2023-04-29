@@ -23,7 +23,6 @@ export default function EditTodo() {
       const response = await axios.get<Todo>(
         `http://localhost:3000/api/todos?id=${id}`
       );
-      console.log(response.data);
       setTodo(response.data);
     };
 
@@ -35,9 +34,6 @@ export default function EditTodo() {
   const formattedDueDate = todo
     ? dayjs(todo.dueDate, "DD/MM/YYYY").toDate()
     : null;
-  console.log(formattedDueDate, "ggg");
-  console.log(typeof formattedDueDate); // "object" or "undefined" if null
-  console.log(formattedDueDate instanceof Date); // true or false depending on whether formattedDueDate is a Date instance or not
 
   return (
     <Wrapper>

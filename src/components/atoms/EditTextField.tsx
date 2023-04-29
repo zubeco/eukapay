@@ -36,14 +36,10 @@ const EditTextField = ({
   const [textError, setTextError] = useState(false);
   const [dateError, setDateError] = useState(false);
   const [apiStatus, setApiStatus] = useState("");
-  console.log(dateValue);
-  const formattedDate = new Date(dateValue!).toISOString().split("T")[0];
-  console.log(formattedDate);
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (textValue && dateValue) {
-      // const formattedDate = new Date(dateValue!).toISOString().split("T")[0];
-      // console.log(`Submitted values: ${textValue} and ${formattedDate}`);
       setTextError(false);
       setDateError(false);
 
@@ -58,7 +54,6 @@ const EditTextField = ({
       axios
         .put(url, data)
         .then((response) => {
-          console.log("Data received:", response.data);
           setApiStatus("success");
           setTimeout(() => {
             setApiStatus("");
@@ -66,19 +61,16 @@ const EditTextField = ({
           router.push("/");
         })
         .catch((error) => {
-          console.error("There was an error sending the PUT request:", error);
           setApiStatus("error");
           setTimeout(() => {
             setApiStatus("");
           }, 5000);
         });
     } else {
-      console.log("Please enter both a text value and date.");
       setTextError(!textValue);
       setDateError(!dateValue);
     }
   };
-  console.log(currentStatus, "STATUS");
 
   return (
     <form onSubmit={handleSubmit}>

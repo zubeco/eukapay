@@ -22,7 +22,6 @@ const MyTextField = () => {
     event.preventDefault();
     if (textValue && dateValue) {
       const formattedDate = new Date(dateValue!).toISOString().split("T")[0];
-      console.log(`Submitted values: ${textValue} and ${formattedDate}`);
       setTextError(false);
       setDateError(false);
 
@@ -33,7 +32,6 @@ const MyTextField = () => {
       axios
         .post<TodoData>("http://localhost:3000/api/todos", data)
         .then((response) => {
-          console.log("Data received:", response.data);
           setTextValue("");
           setDateValue(null);
           setApiStatus("success");
@@ -43,20 +41,17 @@ const MyTextField = () => {
           }, 5000);
         })
         .catch((error) => {
-          console.error("There was an error sending the POST request:", error);
           setApiStatus("error");
           setTimeout(() => {
             setApiStatus("");
           }, 5000);
         });
     } else {
-      console.log("Please enter both a text value and date.");
       setTextError(!textValue);
       setDateError(!dateValue);
     }
   };
 
-  // ...
 
   return (
     <form onSubmit={handleSubmit}>
@@ -83,6 +78,7 @@ const MyTextField = () => {
           setApiStatus("");
         }}
       />
+      
       {textError && (
         <div
           style={{
@@ -94,6 +90,7 @@ const MyTextField = () => {
           Please enter a text value.
         </div>
       )}
+
       <DatePicker
         selected={dateValue}
         onChange={(date: Date | null) => {
@@ -108,6 +105,7 @@ const MyTextField = () => {
         dropdownMode="select"
         className="form-control"
       />
+
       {dateError && (
         <div
           style={{
@@ -132,6 +130,7 @@ const MyTextField = () => {
           Task added successfully!
         </div>
       )}
+
       {apiStatus === "error" && (
         <div
           style={{

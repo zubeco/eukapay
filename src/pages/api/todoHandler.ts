@@ -14,7 +14,6 @@ export const getTodos = async (req: NextApiRequest, res: NextApiResponse) => {
     const todos = JSON.parse(todosData) as Todo[];
     res.status(200).json(todos);
   } catch (error) {
-    console.log(error);
     res.status(500).json({ message: "Error getting todos" });
   }
 };
@@ -33,7 +32,6 @@ export const addTodo = async (req: NextApiRequest, res: NextApiResponse) => {
     await fs.writeFile("data/todos.json", JSON.stringify(todos));
     res.status(201).json(newTodo);
   } catch (error) {
-    console.log(error);
     res.status(500).json({ message: "Error adding todo" });
   }
 };
@@ -49,7 +47,6 @@ export const deleteTodo = async (req: NextApiRequest, res: NextApiResponse) => {
       .status(200)
       .json({ message: `Todo with ID ${id} deleted successfully` });
   } catch (error) {
-    console.log(error);
     res.status(500).json({ message: "Error deleting todo" });
   }
 };
@@ -74,7 +71,6 @@ export const updateTodo = async (req: NextApiRequest, res: NextApiResponse) => {
     await fs.writeFile("data/todos.json", JSON.stringify(todos));
     res.status(200).json(updatedTodo);
   } catch (error) {
-    console.log(error);
     res.status(500).json({ message: "Error updating todo" });
   }
 };
@@ -94,7 +90,6 @@ export const getTodoById = async (
     }
     res.status(200).json(todo);
   } catch (error) {
-    console.log(error);
     res.status(500).json({ message: "Error getting todo" });
   }
 };
