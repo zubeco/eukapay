@@ -53,7 +53,7 @@ const EditTextField = ({
         dueDate: dateValue,
         status: currentStatus,
       };
-      const url = `http://localhost:4545/api/todos/${id}`;
+      const url = `http://localhost:3000/api/todos?id=${id}`;
 
       axios
         .put(url, data)

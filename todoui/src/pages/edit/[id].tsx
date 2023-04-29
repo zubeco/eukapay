@@ -21,7 +21,7 @@ export default function EditTodo() {
   useEffect(() => {
     const fetchTodo = async () => {
       const response = await axios.get<Todo>(
-        `http://localhost:4545/api/todos/${id}`
+        `http://localhost:3000/api/todos?id=${id}`
       );
       console.log(response.data);
       setTodo(response.data);

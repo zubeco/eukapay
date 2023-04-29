@@ -21,7 +21,7 @@ export default function TodoCard() {
   useEffect(() => {
     const fetchTodos = async () => {
       const response = await axios.get<Todo[]>(
-        "http://localhost:4545/api/todos"
+        "http://localhost:3000/api/todos"
       );
       setTodos(response.data);
     };
@@ -30,7 +30,7 @@ export default function TodoCard() {
   }, [shouldRefetch]); // refetch when the shouldRefetch value changes
 
   const handleDelete = async (id: number) => {
-    await axios.delete(`http://localhost:4545/api/todos/${id}`);
+    await axios.delete(`http://localhost:3000/api/todos?id=${id}`);
     toggleRefetch(); // trigger a refetch after deleting a todo
   };
 

@@ -31,7 +31,7 @@ const MyTextField = () => {
         content: textValue,
       };
       axios
-        .post<TodoData>("http://localhost:4545/api/todos", data)
+        .post<TodoData>("http://localhost:3000/api/todos", data)
         .then((response) => {
           console.log("Data received:", response.data);
           setTextValue("");
