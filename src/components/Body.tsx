@@ -1,6 +1,5 @@
 import React from "react";
-import styles from "@/styles/Home.module.css";
-import { Box, Paper, useTheme } from "@mui/material";
+import { useTheme } from "@mui/material";
 import Header from "./atoms/Header";
 import Todo from "./Todo";
 import TodoCard from "./atoms/TodoCard";

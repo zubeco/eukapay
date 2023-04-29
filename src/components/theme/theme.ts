@@ -1,4 +1,3 @@
-import { PaletteMode } from "@mui/material";
 
 declare module "@mui/material/styles/createPalette" {
   interface Palette {
