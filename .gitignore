@@ -1,5 +1,8 @@
 # ignore the .next directory
 .next/
+.next/cache/webpack/client-development/0.pack
+.next/cache/webpack/client-development/3.pack
+
 
 # ignore the node_modules directory
 node_modules/
