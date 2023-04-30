@@ -6,7 +6,6 @@ import TodoCard from "./atoms/TodoCard";
 import Wrapper from "./atoms/Wrapper";
 
 export default function Body() {
-  const theme = useTheme();
   return (
     <Wrapper>
       <Header />

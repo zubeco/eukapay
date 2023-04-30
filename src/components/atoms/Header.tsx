@@ -5,9 +5,6 @@ export default function Header() {
   const router = useRouter();
   const theme = useTheme();
 
-  const handleClick = () => {
-    alert("You clicked the header!");
-  };
 
   return (
     <Typography

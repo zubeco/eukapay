@@ -1,6 +1,6 @@
 import type { AppProps } from "next/app";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { CacheProvider, Global } from "@emotion/react";
+import { Global } from "@emotion/react";
 import { getDesignTokens } from "../components/theme/theme";
 import { useMemo, useState } from "react";
 import { PaletteMode } from "@mui/material";
