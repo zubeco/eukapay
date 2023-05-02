@@ -21,12 +21,11 @@ const MyTextField = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (textValue && dateValue) {
-      const formattedDate = new Date(dateValue!).toISOString().split("T")[0];
       setTextError(false);
       setDateError(false);
 
       const data: TodoData = {
-        dueDate: new Date(formattedDate),
+        dueDate: new Date(dateValue),
         content: textValue,
       };
       axios
@@ -51,7 +50,6 @@ const MyTextField = () => {
       setDateError(!dateValue);
     }
   };
-
 
   return (
     <form onSubmit={handleSubmit}>
@@ -78,7 +76,7 @@ const MyTextField = () => {
           setApiStatus("");
         }}
       />
-      
+
       {textError && (
         <div
           style={{
